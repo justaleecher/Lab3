@@ -1,112 +1,49 @@
-
 /*  Name Block:
- *  Lab Number: Lab 2
+ *  Lab Number: Lab 3
  *  Name: Michael Danylchuk, Maxim Manokhin
  *  Team: 1
- *  The purpose of this assignment is to demonstrate our understanding of polymorphism, encapsulation
- *  and classes by creating a currency simulator that can add compare and manipulate objects
+ *  ADT assignment
  */
- 
-import java.util.Scanner;
 
-public class Main extends Currency{
-	
-	// Reference 1 Pound Object, Reference 2 Dollar Object
-	Dollar dollar = new Dollar();
-	Pound pound = new Pound();
-	// Array of Two Currency References
-	Currency[] currencyObjects = {dollar,pound};
-	// Boolean to help with do while loop
-    boolean isOn = true;
-    // double for our error handling
-    double value = 0.00;
-	// Our main method
+public class Main {
+
+	// Main
 	public static void main(String[] args) {
-		Main max = new Main();
+		//Array of Currency objects
+		Currency[] currencyObjects = new Currency[20];
+		currencyObjects[0] = new Dollar(57.12);
+		currencyObjects[1] = new Dollar(23.44);
+		currencyObjects[2] = new Dollar(87.43);
+		currencyObjects[3] = new Dollar(68.99);
+		currencyObjects[4] = new Dollar(111.22);
+		currencyObjects[5] = new Dollar(44.55);
+		currencyObjects[6] = new Dollar(77.77);
+		currencyObjects[7] = new Dollar(18.36);
+		currencyObjects[8] = new Dollar(543.21);
+		currencyObjects[9] = new Dollar(20.21);
+		currencyObjects[10] = new Dollar(345.67);
+		currencyObjects[11] = new Dollar(36.18);
+		currencyObjects[12] = new Dollar(48.48);
+		currencyObjects[13] = new Dollar(101.00);
+		currencyObjects[14] = new Dollar(11.00);
+		currencyObjects[15] = new Dollar(21.00);
+		currencyObjects[16] = new Dollar(51.00);
+		currencyObjects[17] = new Dollar(1.00);
+		currencyObjects[18] = new Dollar(251.00);
+		currencyObjects[19] = new Dollar(151.00);
+		//Create Stack, Queue, List
+		Stack stack = new Stack();
+		Queue queue = new Queue();
+		
+		//Operations with ADTs
+		stack.push(currencyObjects[0]);
+		stack.push(currencyObjects[3]);
+		stack.push(currencyObjects[4]);
+		stack.push(currencyObjects[5]);
+		stack.pop();
+		stack.pop();
+		stack.peek().print();
 	}
-	
-	// User Interaction called for main 
-	public Main() {
-		userInteraction();
-	}
-	
-	// Method for User Interface
-	public void userInteraction() {
-		System.out.println("Welcome to Currency Simulator:");
-		System.out.println("Enter a or s to add or subtract d or p to dollar or pound the value you would like to deposite, the name of the currency");
-		System.out.println("Example: a d 2.00 dollar -> add 2.00 dollars to dollar balance");
-		dollar.print();
-		pound.print();
-		// do while loop that checks if isOn = false
-		do{
-		Scanner sc = new Scanner(System.in);
-		String ops = sc.next();
-		String type = sc.next();
-		try {
-	    value = sc.nextDouble();
-		}catch(Exception typeMismatch) {
-			System.out.println("Only numbers with decimals can go in for value");
-		}
-		String typecheck = sc.next();
-	   
-	    // checks for input
-		if (ops.equals("a")) {
-			if (type.equals("d") && typecheck.equals("dollar")) {
-				Dollar temp = new Dollar(value);
-				currencyObjects[0] = dollar.add((Dollar)currencyObjects[0], temp); 
-				((Dollar)currencyObjects[0]).print(); 
-				((Pound)currencyObjects[1]).print();
-				System.out.println("What would you like to do next? if not type q for letter spaces and 0.00 for currency followed by q");
-			}
-			
-			else if (type.equals("p") && typecheck.equals("pound")) {
-				Pound temp = new Pound(value); 
-				currencyObjects[1] = pound.add((Pound) currencyObjects[1], temp); //
-				((Dollar)currencyObjects[0]).print();
-				((Pound)currencyObjects[1]).print();
-				System.out.println("What would you like to do next? if not type q for letter spaces and 0.00 for currency followed by q");
-			}
-			else {
-				System.out.println("Incorrect operation!");
-			}
-		}
-		
-		// checks for input
-		if (ops.equals("s")) {
-			if (type.equals("d") && typecheck.equals("dollar")) {
-				Dollar temp = new Dollar(value);
-				currencyObjects[0] = dollar.subtract((Dollar)currencyObjects[0], temp);
-				((Dollar)currencyObjects[0]).print();
-				((Pound)currencyObjects[1]).print();
-				System.out.println("What would you like to do next? if not type q for letter spaces and 0.00 for currency followed by q");
-			}
-			else if (type.equals("p") && typecheck.equals("pound")) {
-				Pound temp = new Pound(value);
-				currencyObjects[1] = pound.subtract((Pound) currencyObjects[1], temp);
-				((Dollar)currencyObjects[0]).print();
-				((Pound)currencyObjects[1]).print();
-				System.out.println("What would you like to do next? if not type q for letter spaces and 0.00 for currency followed by q");
-					
-			}
-			else {
-				System.out.println("Incorrect operation!");
-			}
-		}
-		
-		if (ops.equals("q")) {
-			isOn = false;
-		}
-		
-		}while(isOn == true);
-			return;
- }
-}
 
-// Types of exceptions we need
-// Array Out of Bounds
-// Arethmetic
-// Type protection 
-// ArrayStoreException
-// Maybe Instantiation Exception
-// Invalid cast
+}
 

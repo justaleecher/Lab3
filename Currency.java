@@ -1,4 +1,37 @@
+/*
+public abstract class Currency {
+	private int unit;
+	private int fraction;
+	public Currency() {
+		unit = 0;
+		fraction = 0;
+	}
+	public Currency(Currency x) {
+		unit = x.unit;
+		fraction = x.fraction;
+	}
+	public Currency(double z) {
+		unit = (int) z;
+		fraction = (int)(z*100)%100;
+	}
+	
+	public int getUnit() {
+		return unit;
+		
+		
+	}
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+	public int getFraction() {
+		return fraction;
+	}
+	public void setFraction(int fraction) {
+		this.fraction = fraction;
+	}
 
+}
+*/
 /*   
  *  Name Block:
  *  Lab Number: Lab 2
@@ -9,125 +42,75 @@
  */
 
 abstract class Currency {
-	// Two Integer attributes
+	// Default Constructor
 	private int unit, fraction;
-	
-	// Dont need pre or post documentation for constructors or destructors
-	public Currency(){	
-		unit = 0;
-		fraction = 0;
+	public Currency(){
+	// Two Integer Attributes	
+	unit = 0;
+	fraction = 0;
 	} 
 	
+	// Construction based on one single input of type double (logical objects only)
 	public Currency(double z) {
 		unit = (int) z;
 		fraction = (int)(z*100)%100;
 	}
 	
+	// Copy Constructor and/or Assignment
 	public Currency(Currency x) {
 		unit = x.unit;
 		fraction = x.fraction;
 	}
 	
-	// Java doesn't have a destructure it uses garbage collection 
+	// Java doesn't have a destructor it uses garbage collection 
 	
-	/*
-	 * The purpose of these two methods is to be a getter for the Unit and Fraction attributes of this class
-	 * Pre: No input
-	 * Post: returns unit or fraction respectivly
-	 */
-	
+	// Getter for Unit attribute
 	public int getUnit() {
 		return unit;
 	}
-	
+	// Getter for Fraction attribute
 	public int getFraction() {
 		return fraction;
 	}
 	
-	/* 
-	 * The purpose of these two methods is to be a setter for the Unit and Fraction attributes of this class
-	 * Pre: No input
-	 * Post: Sets unit or fraction respectivly
-	 */
-	
+	// Setter for Unit
 	public void setUnit(int unit) {
 		this.unit = unit;
-	}
-
+	} 
+	// Setter for Fraction
 	public void setFraction(int fraction) {
 		this.fraction = fraction;
 	}
-    
-	/*
-	 * The purpose of this method is to add the fractional and unit values inside two currency objects together
-	 * Pre: Currency x,y - two objects of type currency
-	 * Post: returns the object once two objects are added together (Look for more info at Dollar/Pound child classes)
-	 */
-	
-	public Currency add(Currency x, Currency y) {
-		return x;
-	}
-	
-	/*
-	 * The purpose of this method is to subtract the fractional and unit values inside two currency objects together
-	 * Pre: Currency x,y - two objects of type currency
-	 * Post: returns the object once two objects are subtracted together (Look for more info at Dollar/Pound child classes)
-	 */
-	
-	public Currency subtract(Currency x, Currency y) {
-		return x;
-	}
-	
-	/*
-	 * Algorithm isEqual(Currency x, Currency y)
-	 * 
-	 * The purpose of this method is to compare if both input objects are equal
-	 * Pre: Currency x,y - two objects of type currency
-	 * Post: return true or false
-	 * 
-	 * if(unit value of x is equal to unit value of y and fraction value x is equal to fraction value y)
-	 *  return true
-	 * end if
-	 * return false
-	 * 
-	 */
-	
+/*	
+	// needs to manipulate the object and can create and return new objects
+	//  method to add input object of same currency
+	public int add(Currency x, Currency y);
+
+	// subtract method to subtract input object of same currency
+	public int subtract(Currency x, Currency y);
+*/
+	// isEqual method for comparing an input object of same currency
 	public boolean isEqual(Currency x, Currency y){
 		if (x.getUnit() == y.getUnit() && x.getFraction() == y.getFraction()) {
 			return true;
 		}
 		return false;
 	}
-	
-	/*
-	 * Algorithm isGreater(Currency x, Currency y)
-	 * 
-	 * The purpose of this method is to compare which input object of the same currency is greater
-	 * Pre: Currency x,y - two objects of type currency
-	 * Post: return true or false
-	 * 
-	 * if(unit value of x is greater to unit value of y and fraction value x is greater to fraction value y)
-	 *  return true
-	 * end if
-	 * return false
-	 * 
-	 */
-	
+	// isGreater method for comparing an input object of same currency
     public boolean isGreater(Currency x, Currency y){
     	if (x.getUnit() > y.getUnit() || x.getUnit() >= y.getUnit() && x.getFraction() > y.getFraction()) {
 			return true;
 		}
 		return false;
 	}
-    
-    /*
-     * The purpose of this method is to print out the name and value of the currency
-     * Pre: No input
-     * Post: see in child classes
-     */
-    
-    public void print(){
-    	
-    }
+    public abstract void print();
+    public abstract Currency add(Currency a, Currency b); 
+    public abstract Currency subtract(Currency a, Currency b); 
+    // abstract void print(); ??
+    // print method to pring name and value of currency object in form xx.yy followed by name
+    // public void print() {
+    //System.out.print(unit + fraction + " " + type);
+    //}
+	
 	// All above must be instance methods and not static
 }
